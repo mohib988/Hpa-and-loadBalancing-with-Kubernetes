@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: my-app-sm
+  namespace: default
+  labels:
+    release: mon
+spec:
+  jobLabel: my-app
+  selector:
+    matchLabels:
+      app: my-app
+  endpoints:
+  - port: svc-port
+    interval: 10s
+    path: /metrics
